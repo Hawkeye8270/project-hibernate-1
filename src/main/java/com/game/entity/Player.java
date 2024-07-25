@@ -5,17 +5,19 @@ import java.util.Date;
 
 
 @Entity
-@Table(schema="rpg", name="player")
+@Table(schema="rpg", name = "player")
+@NamedQuery(name="player_getAllCount", query="select count(p) from Player p")
 public class Player {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable=false)
     private Long id;
 
-    @Column(name="name", length = 12, nullable=false)
+    @Column(length = 12, nullable=false)
     private String name;
 
-    @Column(name="title", length = 30, nullable=false)
+    @Column(length = 30, nullable=false)
     private String title;
 
     @Enumerated(EnumType.ORDINAL)
@@ -26,13 +28,13 @@ public class Player {
     @Column(nullable=false)
     private Profession profession;
 
-    @Column(name="birthday", nullable=false)
+    @Column(nullable=false)
     private Date birthday;
 
-    @Column(name="banned", nullable=false)
+    @Column(nullable=false)
     private Boolean banned;
 
-    @Column(name="level", nullable=false)
+    @Column(nullable=false)
     private Integer level;
 
     public Player() {
